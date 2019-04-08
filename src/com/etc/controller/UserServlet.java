@@ -60,6 +60,8 @@ public class UserServlet extends HttpServlet {
 			content = request.getParameter("content");
 		}
 
+		System.out.println("content :" + content);
+
 		PageData<Users> pd = userService.getUsersByPage(page, limit, content);
 
 		// 返回 json格式的对象
