@@ -18,19 +18,18 @@ layui.use('table', function(){
   //第一个实例
   table.render({
     elem: '#demo'
-    ,height: 312
-    ,url: 'users/list/' //数据接口 ,暂时使用layui提供的接口
+    ,height: 560
+    ,url: 'users/list' //数据接口 ,暂时使用layui提供的接口
     ,page: true //开启分页
     ,cols: [[ //表头
-      {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-      ,{field: 'username', title: '用户名', width:80}
-      ,{field: 'sex', title: '性别', width:80, sort: true}
-      ,{field: 'city', title: '城市', width:80} 
-      ,{field: 'sign', title: '签名', width: 177}
-      ,{field: 'experience', title: '积分', width: 80, sort: true}
-      ,{field: 'score', title: '评分', width: 80, sort: true}
-      ,{field: 'classify', title: '职业', width: 80}
-      ,{field: 'wealth', title: '财富', width: 135, sort: true}
+      {field: 'userId', title: '编号', width:80, sort: true, fixed: 'left'}
+      ,{field: 'userName', title: '用户名', width:80}
+      ,{field: 'userPwd', title: '密码', width:180, sort: true}
+      ,{field: 'userSex', title: '性别', width:80} 
+      ,{field: 'userTel', title: '电话号码', width: 177}
+      ,{field: 'userAddress', title: '地址', width: 380, sort: true}
+      ,{field: 'userLevel', title: '等级', width: 80, sort: true}
+      ,{field: 'userState', title: '状态', width: 80}
     ]]
   });
   

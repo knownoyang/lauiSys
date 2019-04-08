@@ -40,6 +40,7 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 
