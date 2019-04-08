@@ -19,7 +19,7 @@ layui.use('table', function(){
   table.render({
     elem: '#demo'
     ,height: 312
-    ,url: 'https://www.layui.com/demo/table/user/' //数据接口 ,暂时使用layui提供的接口
+    ,url: 'users/list/' //数据接口 ,暂时使用layui提供的接口
     ,page: true //开启分页
     ,cols: [[ //表头
       {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}

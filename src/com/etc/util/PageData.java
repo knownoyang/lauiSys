@@ -1,6 +1,5 @@
 package com.etc.util;
 
-
 import java.util.List;
 
 /**
@@ -9,11 +8,31 @@ import java.util.List;
 public class PageData<T> {
 	private List<T> data; // 查找[页面上显示]的数据
 
-	private Integer total; // 总记录数
+	private Integer count; // 总记录数,这里根据layui来调整了一下
 
-	private Integer pageSize;// 每页几行
+	private Integer limit;// 每页几行,这里根据layui来调整了一下
 
 	private Integer page;// 页数
+
+	private Integer code;// 返回操作成功或者失败的数字
+	
+	private String msg; //消息
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 
 	public PageData() {
 		super();
@@ -22,15 +41,15 @@ public class PageData<T> {
 	/**
 	 * 
 	 * @param data
-	 * @param total
-	 * @param pageSize
+	 * @param count
+	 * @param limit
 	 * @param page
 	 */
-	public PageData(List<T> data, Integer total, Integer pageSize, Integer page) {
+	public PageData(List<T> data, Integer count, Integer limit, Integer page) {
 		super();
 		this.data = data;
-		this.total = total;
-		this.pageSize = pageSize;
+		this.count = count;
+		this.limit = limit;
 		this.page = page;
 	}
 
@@ -50,20 +69,20 @@ public class PageData<T> {
 		this.page = page;
 	}
 
-	public Integer getPageSize() {
-		return pageSize;
+	public Integer getLimit() {
+		return limit;
 	}
 
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
+	public void setLimit(Integer limit) {
+		this.limit = limit;
 	}
 
-	public Integer getTotal() {
-		return total;
+	public Integer getCount() {
+		return count;
 	}
 
-	public void setTotal(Integer total) {
-		this.total = total;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	/**
@@ -73,8 +92,8 @@ public class PageData<T> {
 	 */
 	public int getTotalPage() {
 		// total是总记录数 100/10 101/10
-		int num = total / pageSize;
-		if (total % pageSize != 0) {
+		int num = count / limit;
+		if (count % limit != 0) {
 			num++;
 		}
 		return num;
@@ -82,6 +101,6 @@ public class PageData<T> {
 
 	@Override
 	public String toString() {
-		return "{total:" + total + ",data:" + data + "}";
+		return "{total count:" + count + ",data:" + data + "}";
 	}
 }
