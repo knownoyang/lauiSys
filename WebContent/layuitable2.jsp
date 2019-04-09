@@ -138,8 +138,19 @@
 				//console.log(obj)
 				if (obj.event === 'del') {
 					layer.confirm('真的删除行么', function(index) {
-						obj.del();
-						layer.close(index);
+						//console.log(data); //得到的是当前行对应的数据信息
+						console.log("userId :"+data.userId);						
+						//将userId传递给控制器[Servlet]
+						//servlet调用service执行删除动作  /users/del
+						
+						//ajax请求实现访问控制器
+						$.post("users/del","userId="+data.userId,function(cm){
+							
+							layer.msg(cm.msg);
+							obj.del(); //删除当前显示的行，前端界面上的删除
+							layer.close(index);
+						});
+						
 					});
 				} else if (obj.event === 'edit') {
 					layer.prompt({
