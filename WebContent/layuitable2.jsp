@@ -15,6 +15,14 @@
 
 	<div id="editFormDiv" style="display: none">
 		<form class="layui-form" action="" lay-filter="example">
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">用户编号</label>
+				<div class="layui-input-block">
+					<input type="text" name="userId" id="userId" name="userId"
+						lay-verify="title" autocomplete="off" readonly class="layui-input">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
 				<div class="layui-input-block">
@@ -22,62 +30,58 @@
 						autocomplete="off" placeholder="请输入用户名" class="layui-input">
 				</div>
 			</div>
+
 			<div class="layui-form-item">
-				<label class="layui-form-label">密码框</label>
+				<label class="layui-form-label">单选框</label>
 				<div class="layui-input-block">
-					<input type="password" name="password" placeholder="请输入密码"
-						autocomplete="off" class="layui-input">
+					<input type="radio" name="userSex" value="男" title="男" checked="">
+					<input type="radio" name="userSex" value="女" title="女">
+				</div>
+			</div>
+
+
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">地址</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入内容" class="layui-textarea"
+						name="userAddress" id="userAddress"></textarea>
 				</div>
 			</div>
 
 			<div class="layui-form-item">
-				<label class="layui-form-label">选择框</label>
+				<label class="layui-form-label">用户电话</label>
 				<div class="layui-input-block">
-					<select name="interest" lay-filter="aihao">
-						<option value=""></option>
-						<option value="0">写作</option>
-						<option value="1">阅读</option>
-						<option value="2">游戏</option>
-						<option value="3">音乐</option>
-						<option value="4">旅行</option>
+					<input type="text" name="userTel" id="userTel" lay-verify="title"
+						autocomplete="off" placeholder="手机号码" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">等级</label>
+				<div class="layui-input-block">
+					<select name="userLevel" lay-filter="aihao">
+						<option value="0">管理员</option>
+						<option value="1">普通用户</option>
+
 					</select>
 				</div>
 			</div>
 
 			<div class="layui-form-item">
-				<label class="layui-form-label">复选框</label>
+				<label class="layui-form-label">状态</label>
 				<div class="layui-input-block">
-					<input type="checkbox" name="like[write]" title="写作"> <input
-						type="checkbox" name="like[read]" title="阅读"> <input
-						type="checkbox" name="like[daze]" title="发呆">
+					<select name="userState" lay-filter="aihao">
+						<option value="1">启用</option>
+						<option value="0">禁用</option>
+					</select>
 				</div>
 			</div>
 
-			<div class="layui-form-item">
-				<label class="layui-form-label">开关</label>
-				<div class="layui-input-block">
-					<input type="checkbox" name="close" lay-skin="switch"
-						lay-text="ON|OFF">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">单选框</label>
-				<div class="layui-input-block">
-					<input type="radio" name="sex" value="男" title="男" checked="">
-					<input type="radio" name="sex" value="女" title="女">
-				</div>
-			</div>
-			<div class="layui-form-item layui-form-text">
-				<label class="layui-form-label">文本域</label>
-				<div class="layui-input-block">
-					<textarea placeholder="请输入内容" class="layui-textarea" name="desc"></textarea>
-				</div>
-			</div>
 
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+					<button class="layui-btn btn-update" type="button" lay-submit=""
+						lay-filter="demo1">立即提交</button>
 				</div>
 			</div>
 		</form>
@@ -106,6 +110,7 @@
 
 	<script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="resetpwd">重置密码</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
@@ -154,7 +159,7 @@
 				}, {
 					field : 'userAddress',
 					title : '地址',
-					width : 100
+					width : 200
 				}, {
 					field : 'userLevel',
 					title : '等级',
@@ -165,7 +170,7 @@
 				}, {
 					field : 'userTel',
 					title : '电话',
-					width : 80,
+					width : 180,
 					sort : true
 				}, {
 					field : 'userState',
@@ -178,7 +183,7 @@
 					fixed : 'right',
 					title : '操作',
 					toolbar : '#barDemo',
-					width : 150
+					width : 250
 				} ] ],
 				page : true,
 				id : 'testReload'
@@ -231,14 +236,43 @@
 				} else if (obj.event === 'edit') {
 
 					//先给我们的表单元素赋值
-					$("#userName").attr("value",data.userName);
+					$("#userId").attr("value", data.userId);
+					$("#userName").attr("value", data.userName);
 					console.log($("#userName").val());
+					$("#userTel").attr("value", data.userTel);
+					//性别
+					if (data.userSex == "女") {
+						$("input[name='userSex'][value='女']").attr("checked",
+								true);
+						$("input[name='userSex'][value='男']").attr("checked",
+								false);
+						//$('input:radio[name=userSex]')[1].checked = true;
+					} else {
+						$("input[name='userSex'][value='男']").attr("checked",
+								true);
+						$("input[name='userSex'][value='女']").attr("checked",
+								false);
+						//$('input:radio[name=userSex]')[0].checked = true;
+
+					}
+					layui.form.render('radio');
+
+					//地址文本域 <textarea> 文字....</textarea>
+					$("#userAddress").html(data.userAddress);
+
+					//等级
+
 					layer.open({
-						type : 1,//弹出层 div
+						type : 1//弹出层 div
+						,
+						area : [ '600px', '500px' ],
+						shade : 0.6,
+						id : 'LAY_layuipro' //设定一个id，防止重复弹出
+						,
 						content : $("#editFormDiv").html(),
 
 					});
-					
+
 					//表单的render
 					layui.form.render();
 
@@ -283,6 +317,45 @@
 			$('.demoTable .layui-btn').on('click', function() {
 				var type = $(this).data('type');
 				active[type] ? active[type].call(this) : '';
+			});
+
+			/*表单的提交 按钮的单击事件*/
+			$(document).on("click", ".btn-update", function() {
+				//可以实现 比较麻烦....
+				console.log(layui.form.data);
+			});
+
+			//监听提交  新增加的代码
+			layui.form.on('submit(demo1)', function(data) {
+				/* layer.alert(JSON.stringify(data.field), {
+					title : '最终的提交信息'
+				}) */
+				//表单中的数据
+				console.log(JSON.stringify(data.field));
+				//ajax请求实现访问控制器
+				$.ajax({
+					type : "post", //提交方式
+					url : "users/update",
+					data : JSON.stringify(data.field), //提交给控制器的数据
+					contentType : "application/json", //提交给控制的数据 格式
+					success : function(cm) {
+						layer.msg(cm.msg, {
+							time : 2000 //两秒延迟
+						}, function() {
+							if (cm.msg == "修改成功") {
+
+								//obj.update(); ?? 理想
+								//layer.close(index);;
+								parent.layer.closeAll();//关闭所有,简单粗暴
+								//window.parent.location.reload();//刷新父页面
+							}
+
+						});
+
+					}
+				});
+
+				return false;
 			});
 
 		});

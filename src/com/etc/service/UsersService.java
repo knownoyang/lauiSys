@@ -9,6 +9,8 @@ public interface UsersService {
 
 	public boolean addUsers(Users user);
 
+	public boolean updateUsers(Users user);
+
 	public Users login(Users u);
 
 	public boolean userNameValidate(String userName);

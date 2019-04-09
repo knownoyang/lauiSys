@@ -55,5 +55,12 @@ public class UsersServiceImpl implements UsersService {
 		//当前登录的用户是不能删除的. 业务判断		
 		return ud.delUsers(userId);
 	}
+	
+	
+	@Override
+	public boolean updateUsers(Users user) {
+		// TODO Auto-generated method stub
+		return ud.updateUsers(user);
+	}
 
 }

@@ -62,4 +62,12 @@ public class UsersDaoImpl implements UsersDao {
 		return DBUtil.execute(sql, userId) > 0;
 	}
 
+	@Override
+	public boolean updateUsers(Users user) {
+		// TODO Auto-generated method stub
+		String sql = "update users set userName=?,userSex=?,userAddress=?,userTel=?,userLevel=?,userState=? where userId=?";
+		return DBUtil.execute(sql, user.getUserName(), user.getUserSex(), user.getUserAddress(), user.getUserTel(),
+				user.getUserLevel(), user.getUserState(), user.getUserId()) > 0;
+	}
+
 }

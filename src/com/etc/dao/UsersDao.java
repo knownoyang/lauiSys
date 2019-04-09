@@ -48,4 +48,8 @@ public interface UsersDao {
 	 * @return
 	 */
 	public boolean getUsers(String userName);
+	
+	
+	
+	public boolean updateUsers(Users user);
 }

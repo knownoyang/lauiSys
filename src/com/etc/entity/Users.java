@@ -46,6 +46,18 @@ public class Users implements Serializable {
 		this.userState = userState;
 	}
 	
+	public Users(int userId, String userName,  String userSex, String userTel, String userAddress,
+			int userLevel, int userState) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userSex = userSex;
+		this.userTel = userTel;
+		this.userAddress = userAddress;
+		this.userLevel = userLevel;
+		this.userState = userState;
+	}
+	
 	public Users(String userName, String userPwd, String userSex, String userTel, String userAddress,
 			int userLevel, int userState) {
 		this.userName = userName;
