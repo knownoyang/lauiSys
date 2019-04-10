@@ -47,6 +47,7 @@ public class UserUpdateServlet extends HttpServlet {
 		response.setContentType("application/json");
 		
 		StringBuffer myJson = new StringBuffer();
+		//使用request对象得到一个BufferedReader对象
 		BufferedReader reader = request.getReader();
 		String line = null;
 		while ((line = reader.readLine()) != null) {
@@ -55,6 +56,7 @@ public class UserUpdateServlet extends HttpServlet {
 		System.out.println(myJson.toString());
 		
 		Gson gson = new Gson();
+		
 		
 		//将json字符串转换为Java中的对象
 		Users user = gson.fromJson(myJson.toString(), Users.class);
@@ -65,6 +67,7 @@ public class UserUpdateServlet extends HttpServlet {
 
 		System.out.println("updateuser :" + user);
 		CommonMessage cm = new CommonMessage(flag ? "修改成功" : "修改失败");
+		//之前 都是用gson.toJson功能是将java中的对象 转换为json格式对象
 		String jsonStr = gson.toJson(cm);
 
 		out.print(jsonStr);
