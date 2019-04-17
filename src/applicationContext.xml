@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+	<!-- bean管理 依赖注入等信息 都要放在这里完成 ,注解,这里写一下基本配置 -->
+
+	<context:component-scan base-package="com.etc"></context:component-scan>
+	<!-- 第一步 ：配置数据源 ,方法1 ：配置一个DriverManagerDataSource =>bean 此时我们没有用到数据库的连接池 -->
+	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		id="dataSource">
+		<!-- 注入属性 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/zzdb"></property>
+		<!-- 实际写的时候 一定不能用root级别的用户 -->
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+
+	<!-- 第二步: 我们使用springjdbc需要用到一个bean JdbcTemplate -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jdbcTemplate">
+		<!-- 注入 虽然我们再jdbcTemplate的源码中没有看到dataSource的属性，但是看到了setDataSource的方法，我们发现父类中有一个属性dataSource以及一个setDataSource的方法 -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+</beans>

@@ -124,7 +124,7 @@
 
 			table.render({
 				elem : '#test',
-				url : 'users/list',
+				url : 'users',//地址和springmvc中控制器地址一致
 				toolbar : '#toolbarDemo',
 				title : '用户数据表',
 				cols : [ [ {
@@ -140,8 +140,7 @@
 				}, {
 					field : 'userName',
 					title : '用户名',
-					width : 120,
-					edit : 'text'
+					width : 120
 				}, {
 					field : 'email',
 					title : '邮箱',
@@ -222,6 +221,7 @@
 						//servlet调用service执行删除动作  /users/del
 
 						//ajax请求实现访问控制器
+						////地址和springmvc中控制器地址一致
 						$.post("users/del", "userId=" + data.userId, function(
 								cm) {
 
@@ -346,7 +346,7 @@
 				//ajax请求实现访问控制器
 				$.ajax({
 					type : "post", //提交方式
-					url : "users/update",
+					url : "users/update", ////地址和springmvc中控制器地址一致
 					data : JSON.stringify(data.field), //提交给控制器的数据
 					contentType : "application/json", //提交给控制的数据 格式
 					success : function(cm) {

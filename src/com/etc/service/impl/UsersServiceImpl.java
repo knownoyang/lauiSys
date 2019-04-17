@@ -1,15 +1,20 @@
 package com.etc.service.impl;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.etc.dao.UsersDao;
-import com.etc.dao.impl.UsersDaoImpl;
 import com.etc.entity.Users;
 import com.etc.service.UsersService;
 import com.etc.util.MD5Util;
 import com.etc.util.PageData;
 
+@Service(value="usersService")
 public class UsersServiceImpl implements UsersService {
 
-	private UsersDao ud = new UsersDaoImpl();
+	@Resource(name="usersDao")
+	private UsersDao ud;
 
 	@Override
 	public PageData<Users> getUsersByPage(int page, int pageSize, String content) {
